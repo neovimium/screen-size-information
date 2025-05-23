@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -53,27 +53,17 @@
         <h1>Screen Size Information</h1>
         
         <div class="size-info">
-            <div class="label">Outer Screen Size (Total Screen):</div>
+            <div class="label">Outer Window Size (Including Browser Chrome):</div>
             <div class="value" id="outerSize"></div>
         </div>
         
         <div class="size-info">
-            <div class="label">Inner Screen Size (Viewport):</div>
+            <div class="label">Inner Window Size (Viewport Only):</div>
             <div class="value" id="innerSize"></div>
         </div>
         
         <div class="size-info">
-            <div class="label">Available Screen Size:</div>
-            <div class="value" id="availableSize"></div>
-        </div>
-        
-        <div class="size-info">
-            <div class="label">Browser Window Size:</div>
-            <div class="value" id="windowSize"></div>
-        </div>
-        
-        <div class="size-info">
-            <div class="label">Size Differences:</div>
+            <div class="label">Size Differences (Chrome Overhead):</div>
             <div class="value" id="differences"></div>
         </div>
         
@@ -83,21 +73,15 @@
     <script>
         function updateSizes() {
             document.getElementById('outerSize').textContent = 
-                `Width: ${screen.width}px × Height: ${screen.height}px`;
+                `Width: ${window.outerWidth}px × Height: ${window.outerHeight}px`;
             
             document.getElementById('innerSize').textContent = 
                 `Width: ${window.innerWidth}px × Height: ${window.innerHeight}px`;
             
-            document.getElementById('availableSize').textContent = 
-                `Width: ${screen.availWidth}px × Height: ${screen.availHeight}px`;
-            
-            document.getElementById('windowSize').textContent = 
-                `Width: ${window.outerWidth}px × Height: ${window.outerHeight}px`;
-            
-            const widthDiff = screen.width - window.innerWidth;
-            const heightDiff = screen.height - window.innerHeight;
+            const widthDiff = window.outerWidth - window.innerWidth;
+            const heightDiff = window.outerHeight - window.innerHeight;
             document.getElementById('differences').textContent = 
-                `Outer - Inner: ${widthDiff}px × ${heightDiff}px`;
+                `Width: ${widthDiff}px × Height: ${heightDiff}px`;
         }
 
         updateSizes();
